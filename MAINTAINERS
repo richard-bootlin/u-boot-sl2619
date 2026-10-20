@@ -714,6 +714,17 @@ F:	drivers/pinctrl/sunxi/
 F:	drivers/video/sunxi/
 F:	tools/sunxi*
 
+ARM SYNAPTICS
+M:	Richard Genoud <richard.genoud@bootlin.com>
+M:	Terry Zhou <terryzhou05@gmail.com>
+S:	Maintained
+F:	arch/arm/dts/sl2619-rdk-u-boot.dtsi
+F:	arch/arm/mach-synaptics/
+F:	board/synaptics/
+F:	configs/synaptics_*
+F:	doc/board/synaptics/
+F:	include/configs/synaptics_*.h
+
 ARM TEGRA
 M:	Thierry Reding <treding@nvidia.com>
 M:	Svyatoslav Ryhel <clamor95@gmail.com>
