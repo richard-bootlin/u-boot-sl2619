@@ -723,6 +723,7 @@ F:	arch/arm/mach-synaptics/
 F:	board/synaptics/
 F:	configs/synaptics_*
 F:	doc/board/synaptics/
+F:	drivers/clk/synaptics/
 F:	include/configs/synaptics_*.h
 
 ARM TEGRA
