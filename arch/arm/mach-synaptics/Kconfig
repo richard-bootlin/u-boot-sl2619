@@ -1,0 +1,36 @@
+if ARCH_SYNAPTICS
+
+config SYS_SOC
+	default "synaptics"
+
+config SYS_VENDOR
+	default "synaptics"
+
+config SYNAPTICS_SL2619
+	bool "Synaptics SL2619 SoC"
+	select ARM64
+	help
+	  The Synaptics SL2619 is a ARM64-based SoC with a dual-core Cortex-A55.
+	  including UART, SPI, USB2.0 and OTG, EMMC, etc.
+
+config SYNAPTICS_REGMEM_MAP_BASE
+	hex
+	default 0xe0000000 if SYNAPTICS_SL2619
+
+config SYNAPTICS_REGMEM_MAP_SIZE
+	hex
+	default 0x20000000 if SYNAPTICS_SL2619
+
+if SYNAPTICS_SL2619
+
+config TARGET_SL2619
+	bool "Support Synaptics SL2619 RDK board"
+	help
+	  Support for the Synaptics Astra Machina SL2619 RDK board based on the
+	  Synaptics SL2619 SoC.
+
+source "board/synaptics/sl2619/Kconfig"
+
+endif
+
+endif

@@ -1,0 +1,5 @@
+// SPDX-License-Identifier: GPL-2.0+
+
+&sm_uart0 {
+	clock-frequency = <25000000>;
+};
