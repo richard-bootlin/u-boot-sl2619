@@ -4,11 +4,14 @@
  */
 
 #include <asm/io.h>
+#include <asm-generic/int-ll64.h>
 #include <dm/ofnode.h>
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/ioport.h>
 #include <linux/string.h>
+#include <mach/soc.h>
+#include <mmc.h>
 
 /* UART Software Reset Register */
 #define SYNA_UART_SRR		0x88
@@ -70,4 +73,46 @@ int board_early_init_f(void)
 	reset_console();
 
 	return 0;
+}
+
+static int mmc_get_boot(void)
+{
+	static int mmc_flash_dev = -1;
+	u32 boot_source;
+	struct resource res;
+	ofnode node;
+	u32 val;
+	int ret;
+
+	if (mmc_flash_dev != -1)
+		return mmc_flash_dev;
+
+	node = ofnode_by_compatible(ofnode_null(), "syna,sl2610-soc-syscon");
+	if (!ofnode_valid(node))
+		return -ENODEV;
+
+	ret = ofnode_read_resource(node, 0, &res);
+	if (ret)
+		return ret;
+
+	val = readl(res.start + BOOTSTRAP_REG);
+	boot_source = field_get(BOOT_MODE_MASK, val);
+
+	switch (boot_source) {
+	case BOOT_MODE_SPI_SD: mmc_flash_dev = 1; break;
+	case BOOT_MODE_EMMC: mmc_flash_dev = 0; break;
+	}
+
+	return mmc_flash_dev;
+}
+
+int mmc_get_env_dev(void)
+{
+	int mmc_env_dev = CONFIG_IS_ENABLED(ENV_IS_IN_MMC,
+					    (CONFIG_ENV_MMC_DEVICE_INDEX),
+					    (-1));
+	if (mmc_env_dev < 0)
+		mmc_env_dev = mmc_get_boot();
+
+	return mmc_env_dev;
 }
