@@ -4,11 +4,14 @@
  */
 
 #include <asm/io.h>
+#include <asm-generic/int-ll64.h>
 #include <dm/ofnode.h>
 #include <linux/bitops.h>
 #include <linux/errno.h>
 #include <linux/ioport.h>
 #include <linux/string.h>
+#include <mach/soc.h>
+#include <mmc.h>
 
 /* UART Software Reset Register */
 #define SYNA_UART_SRR		0x88
@@ -70,4 +73,35 @@ int board_early_init_f(void)
 	reset_console();
 
 	return 0;
+}
+
+static int mmc_get_boot(void)
+{
+	static int mmc_flash_dev = -1;
+	u32 boot_source;
+
+	if (mmc_flash_dev != -1)
+		return mmc_flash_dev;
+
+	boot_source = field_get(BOOT_MODE_MASK, readl(BOOT_MODE_REGISTER));
+
+	debug("\tboot_source: %d\n", boot_source);
+
+	if (boot_source == BOOT_MODE_XSPI)
+		mmc_flash_dev = 0; /* SPI-SD */
+	else
+		mmc_flash_dev = 1; /* eMMC */
+
+	return mmc_flash_dev;
+}
+
+int mmc_get_env_dev(void)
+{
+	int mmc_env_dev = CONFIG_IS_ENABLED(ENV_IS_IN_MMC,
+					    (CONFIG_ENV_MMC_DEVICE_INDEX),
+					    (-1));
+	if (mmc_env_dev < 0)
+		mmc_env_dev = mmc_get_boot();
+
+	return mmc_env_dev;
 }
