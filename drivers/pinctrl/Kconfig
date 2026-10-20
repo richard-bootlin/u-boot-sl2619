@@ -312,6 +312,16 @@ config PINCTRL_SINGLE
 	  Depending on the platform make sure to also enable OF_TRANSLATE and
 	  eventually SPL_OF_TRANSLATE to get correct address translations.
 
+config PINCTRL_SL2610
+	bool "Synaptics SL2610 family pin-control and pin-mux driver"
+	depends on DM && PINCTRL_GENERIC && ARCH_SYNAPTICS
+	select PINCONF
+	default y
+	help
+	  Support pin multiplexing control on Synaptics SL2610 family SoCs.
+	  The driver uses Generic Pinctrl framework and is compatible with the
+	  Linux driver, i.e. it uses the same device tree configuration.
+
 config PINCTRL_STI
 	bool "STMicroelectronics STi pin-control and pin-mux driver"
 	depends on DM && ARCH_STI

@@ -32,6 +32,7 @@ obj-$(CONFIG_$(PHASE_)PINCTRL_ROCKCHIP)	+= rockchip/
 obj-$(CONFIG_PINCTRL_SANDBOX)		+= pinctrl-sandbox.o
 obj-$(CONFIG_PINCTRL_SCMI)		+= pinctrl-scmi.o
 obj-$(CONFIG_PINCTRL_SINGLE)		+= pinctrl-single.o
+obj-$(CONFIG_PINCTRL_SL2610)		+= pinctrl-sl2610.o
 obj-$(CONFIG_$(PHASE_)PINCTRL_SPACEMIT_K1) += spacemit/
 obj-$(CONFIG_PINCTRL_STARFIVE)		+= starfive/
 obj-$(CONFIG_PINCTRL_STI)		+= pinctrl-sti.o
