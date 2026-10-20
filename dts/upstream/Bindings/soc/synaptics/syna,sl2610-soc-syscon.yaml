@@ -1,0 +1,178 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/soc/synaptics/syna,sl2610-soc-syscon.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Synaptics SL2610 system control registers
+
+maintainers:
+  - Jisheng Zhang <jszhang@kernel.org>
+
+description: |
+  The SL2610 family has separate SoC, MCU, AVIO, and CPU system control
+  register blocks. The SoC and MCU blocks provide clocks, resets, and pin
+  control. The CPU block provides clocks. The AVIO block contains audio PLLs.
+
+  Clock and reset specifiers refer directly to the system control node.
+  Pin group configurations are direct children of the SoC or MCU node.
+  There are no separate clock, reset, or pin controller child nodes.
+
+properties:
+  compatible:
+    items:
+      - enum:
+          - syna,sl2610-soc-syscon
+          - syna,sl2610-mcu-syscon
+          - syna,sl2610-avio-syscon
+          - syna,sl2610-cpu-syscon
+      - const: syscon
+
+  reg:
+    maxItems: 1
+
+  clocks:
+    maxItems: 1
+    description: External reference clock input.
+
+  '#clock-cells':
+    const: 1
+
+  '#reset-cells':
+    const: 1
+
+  syna,gbl-syscon:
+    $ref: /schemas/types.yaml#/definitions/phandle
+    description: Phandle to the SoC system control registers for CPU PLL bypass.
+
+patternProperties:
+  '-(pmux|pins)$':
+    type: object
+    description: Pin group mux and electrical configuration.
+    allOf:
+      - $ref: /schemas/pinctrl/pinmux-node.yaml#
+      - $ref: /schemas/pinctrl/pincfg-node.yaml#
+    properties:
+      groups:
+        $ref: /schemas/types.yaml#/definitions/string-array
+      function:
+        $ref: /schemas/types.yaml#/definitions/string
+      bias-pull-up:
+        description: |
+          Enable pull-up bias and select its strength. A value of 0 selects
+          normal pull-up and 1 selects strong pull-up. The boolean form is
+          equivalent to 1 and selects strong pull-up. Use bias-disable to
+          disable pull bias. Values are mode selectors, not resistance in Ohms.
+        oneOf:
+          - type: boolean
+          - $ref: /schemas/types.yaml#/definitions/uint32
+            enum: [0, 1]
+      bias-pull-down:
+        description: |
+          Enable the default pull-down with a boolean or 1, or disable it with 0.
+          Pull resistance is not selectable.
+        oneOf:
+          - type: boolean
+          - $ref: /schemas/types.yaml#/definitions/uint32
+            enum: [0, 1]
+    required:
+      - groups
+      - function
+    unevaluatedProperties: false
+
+required:
+  - compatible
+  - reg
+  - clocks
+
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - syna,sl2610-soc-syscon
+              - syna,sl2610-mcu-syscon
+    then:
+      required:
+        - '#clock-cells'
+        - '#reset-cells'
+    else:
+      properties:
+        '#reset-cells': false
+      patternProperties:
+        '-(pmux|pins)$': false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: syna,sl2610-cpu-syscon
+    then:
+      required:
+        - '#clock-cells'
+        - syna,gbl-syscon
+    else:
+      properties:
+        syna,gbl-syscon: false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: syna,sl2610-avio-syscon
+    then:
+      properties:
+        '#clock-cells': false
+
+additionalProperties: false
+
+examples:
+  - |
+    soc_syscon: syscon@f7e10000 {
+        compatible = "syna,sl2610-soc-syscon", "syscon";
+        reg = <0xf7e10000 0x10000>;
+        clocks = <&osc>;
+        #clock-cells = <1>;
+        #reset-cells = <1>;
+
+        i2c2-pmux {
+            groups = "GPIO23", "GPIO24";
+            function = "tw2";
+            bias-pull-up = <0>;
+        };
+
+        i2c3-pmux {
+            groups = "GPIO27", "GPIO28";
+            function = "tw3";
+            bias-pull-up;
+        };
+    };
+
+    syscon@e5025000 {
+        compatible = "syna,sl2610-mcu-syscon", "syscon";
+        reg = <0xe5025000 0x1000>;
+        clocks = <&osc>;
+        #clock-cells = <1>;
+        #reset-cells = <1>;
+
+        i2c0-pmux {
+            groups = "SM_GPIO12", "SM_GPIO13";
+            function = "tw0";
+        };
+    };
+
+    syscon@f7e30000 {
+        compatible = "syna,sl2610-cpu-syscon", "syscon";
+        reg = <0xf7e30000 0x4000>;
+        clocks = <&osc>;
+        #clock-cells = <1>;
+        syna,gbl-syscon = <&soc_syscon>;
+    };
+
+    syscon@f7490000 {
+        compatible = "syna,sl2610-avio-syscon", "syscon";
+        reg = <0xf7490000 0x4000>;
+        clocks = <&osc>;
+    };
+...
