@@ -621,6 +621,7 @@ config SYS_LOAD_ADDR
 	hex "Address in memory to use by default"
 	default 0x01000000 if ARCH_SOCFPGA
 	default 0x02000000 if PPC || X86
+	default 0x0cf00000 if ARCH_SYNAPTICS
 	default 0x81000000 if MACH_SUNIV
 	default 0x22000000 if MACH_SUN9I
 	default 0x42000000 if ARCH_SUNXI

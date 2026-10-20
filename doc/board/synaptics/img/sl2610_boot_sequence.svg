@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800px" height="600px" viewBox="40 59 1047 740" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Arrière-plan"/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Background"/>
+  <g id="Hintergrund"/>
+  <g id="Background">
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #868686" x="896.2" y="627" width="153" height="149" rx="0" ry="0"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="972.7" y="707.2">
+        <tspan x="972.7" y="707.2"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #868686" x="736.2" y="464" width="312.8" height="149" rx="0" ry="0"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="892.6" y="544.2">
+        <tspan x="892.6" y="544.2"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #868686" x="561.2" y="286" width="153" height="149" rx="0" ry="0"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="637.7" y="366.2">
+        <tspan x="637.7" y="366.2"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #868686" x="359.2" y="285" width="153" height="149" rx="0" ry="0"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="435.7" y="365.2">
+        <tspan x="435.7" y="365.2"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #e5e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #868686" x="363.2" y="85" width="153" height="149" rx="0" ry="0"/>
+      <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="439.7" y="165.2">
+        <tspan x="439.7" y="165.2"></tspan>
+      </text>
+    </g>
+    <rect style="fill: #ffacac; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #cc1f1a" x="172" y="100" width="120" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="236" y="82.7">
+      <tspan x="236" y="82.7">Stored in ROM</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #a34804" x1="140" y1="260" x2="1082" y2="264"/>
+    <text font-size="16.9333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="40" y="160">
+      <tspan x="40" y="160">Cortex M3</tspan>
+    </text>
+    <rect style="fill: #fff8a8; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #d9cb2f" x="378" y="302" width="120" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="232" y="152">
+      <tspan x="232" y="152">ROM</tspan>
+      <tspan x="232" y="168">code</tspan>
+    </text>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="442.2,220 438,220 438,292.264 "/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="438,299.764 433,289.764 438,292.264 443,289.764 "/>
+    </g>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="292,160 292,160 372.464,160 "/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="379.964,160 369.964,165 372.464,160 369.964,155 "/>
+    </g>
+    <text font-size="16.9333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="40" y="360">
+      <tspan x="40" y="360">Cortex M52</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #a34804" x1="140.4" y1="460" x2="1078" y2="461"/>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="498" y1="362" x2="567.264" y2="362"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="574.764,362 564.764,367 567.264,362 564.764,357 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="438" y="354">
+      <tspan x="438" y="354">System Manager</tspan>
+      <tspan x="438" y="370">Bootloader</tspan>
+    </text>
+    <rect style="fill: #c5e387; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #6a8954" x="748" y="477" width="118" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="807" y="541.731">
+      <tspan x="807" y="541.731">TF-A</tspan>
+    </text>
+    <text font-size="16.9333" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="40" y="560">
+      <tspan x="40" y="560">Cortex A55</tspan>
+    </text>
+    <rect style="fill: #c5e387; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #6a8954" x="911" y="638" width="120" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="971" y="702.95">
+      <tspan x="971" y="702.95">U-Boot</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="971.5" y1="596.5" x2="971.117" y2="628.265"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="971.027,635.764 966.148,625.705 971.117,628.265 976.147,625.825 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="980" y="609.95">
+      <tspan x="980" y="609.95">Runs</tspan>
+    </text>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke-dasharray: 20; stroke: #cc1f1a" x1="1086" y1="620" x2="145" y2="620"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="402" y="660">
+      <tspan x="402" y="660">Normal world</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="402" y="580">
+      <tspan x="402" y="580">Secure world</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="438" y="73">
+      <tspan x="438" y="73">Bundled in spk.bin</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="869" y="455">
+      <tspan x="869" y="455">Bundled in tkz.subimg</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="882" y="556">
+      <tspan x="882" y="556"></tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="977" y="795">
+      <tspan x="977" y="795">Bundled in bl.subimg</tspan>
+    </text>
+    <rect style="fill: #c5e387; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #6a8954" x="914" y="476.5" width="115" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="971.5" y="541.231">
+      <tspan x="971.5" y="541.231">OP-TEE</tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="866" y1="537" x2="904.264" y2="536.601"/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="911.764,536.523 901.817,541.627 904.264,536.601 901.713,531.628 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="891.376" y="522.2">
+      <tspan x="891.376" y="522.2">Runs</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="541" y="318.95">
+      <tspan x="541" y="318.95">Loads</tspan>
+      <tspan x="541" y="334.95">and</tspan>
+      <tspan x="541" y="350.95">runs</tspan>
+    </text>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="638.2,422 638.4,422 638.4,537 738.264,537 "/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="745.764,537 735.764,542 738.264,537 735.764,532 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="328" y="106.95">
+      <tspan x="328" y="106.95">Loads</tspan>
+      <tspan x="328" y="122.95">and</tspan>
+      <tspan x="328" y="138.95">runs</tspan>
+    </text>
+    <rect style="fill: #ffacac; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #cc1f1a" x="382.2" y="100" width="120" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="440" y="155">
+      <tspan x="440" y="155">SPK</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="417" y="249.731">
+      <tspan x="417" y="249.731">Loads</tspan>
+      <tspan x="417" y="265.731">and</tspan>
+      <tspan x="417" y="281.731">runs</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="435" y="452">
+      <tspan x="435" y="452">Bundled in m52bl.bin</tspan>
+    </text>
+    <rect style="fill: #fff8a8; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #d9cb2f" x="578.2" y="302" width="120" height="120" rx="0" ry="0"/>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="639" y="358">
+      <tspan x="639" y="358">System Manager</tspan>
+      <tspan x="639" y="374">Firmware</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="640" y="279">
+      <tspan x="640" y="279">Bundled in sysmgr.subimg</tspan>
+    </text>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="714.2,360.5 971,360.5 971,462.264 "/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="971,469.764 966,459.764 971,462.264 976,459.764 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="802" y="355">
+      <tspan x="802" y="355">Loads</tspan>
+    </text>
+    <g>
+      <polyline style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" points="638.3,422 638,422 638,702 900.264,702 "/>
+      <polygon style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" points="907.764,702 897.764,707 900.264,702 897.764,697 "/>
+    </g>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="678" y="693">
+      <tspan x="678" y="693">Loads</tspan>
+    </text>
+    <text font-size="12.8" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="690" y="498.95">
+      <tspan x="690" y="498.95">Loads</tspan>
+      <tspan x="690" y="514.95">and</tspan>
+      <tspan x="690" y="530.95">runs</tspan>
+    </text>
+  </g>
+</svg>

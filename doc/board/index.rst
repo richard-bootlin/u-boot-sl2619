@@ -66,6 +66,7 @@ Board-specific doc
    st/index
    starfive/index
    ste/index
+   synaptics/index
    tbs/index
    thead/index
    theobroma-systems/index

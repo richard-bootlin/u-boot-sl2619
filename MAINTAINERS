@@ -707,6 +707,12 @@ F:	drivers/pinctrl/sunxi/
 F:	drivers/video/sunxi/
 F:	tools/sunxi*
 
+ARM SYNAPTICS
+M:	Richard Genoud <richard.genoud@bootlin.com>
+M:	Terry Zhou <terryzhou05@gmail.com>
+S:	Maintained
+N:	synaptics
+
 ARM TEGRA
 M:	Thierry Reding <treding@nvidia.com>
 M:	Svyatoslav Ryhel <clamor95@gmail.com>

@@ -1292,6 +1292,27 @@ config ARCH_SUNXI
 	imply USB_GADGET
 	imply WDT
 
+config ARCH_SYNAPTICS
+	bool "Support Synaptics SoCs"
+	select ARM64
+	select CLK
+	select DM
+	select DM_RESET
+	select DM_SERIAL
+	select GICV2
+	select OF_CONTROL
+	select PSCI_RESET
+	select PINCTRL
+	select SYNAPTICS_SL2619
+	select SYSRESET
+	select SYSRESET_PSCI
+	select SYSCON
+	select SYS_NS16550
+	imply OF_UPSTREAM
+	help
+	  Support for Synaptics SoCs such as the Astra SL2610 product
+	  line.
+
 config ARCH_U8500
 	bool "ST-Ericsson U8500 Series"
 	select CPU_V7A
@@ -2440,6 +2461,8 @@ source "arch/arm/mach-stm32/Kconfig"
 source "arch/arm/mach-stm32mp/Kconfig"
 
 source "arch/arm/mach-sunxi/Kconfig"
+
+source "arch/arm/mach-synaptics/Kconfig"
 
 source "arch/arm/mach-tegra/Kconfig"
 

@@ -1,0 +1,9 @@
+if TARGET_SL2619
+
+config SYS_BOARD
+	default "sl2619"
+
+config SYS_CONFIG_NAME
+	default "synaptics_sl2619"
+
+endif
