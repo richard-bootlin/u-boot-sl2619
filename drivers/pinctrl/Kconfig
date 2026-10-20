@@ -312,6 +312,12 @@ config PINCTRL_SINGLE
 	  Depending on the platform make sure to also enable OF_TRANSLATE and
 	  eventually SPL_OF_TRANSLATE to get correct address translations.
 
+config PINCTRL_SL261X
+	bool "Synaptics SL261x pin-control and pin-mux driver"
+	depends on DM && ARCH_SYNAPTICS
+	help
+	  Support pin multiplexing control on Synaptics SL261x SoCs
+
 config PINCTRL_STI
 	bool "STMicroelectronics STi pin-control and pin-mux driver"
 	depends on DM && ARCH_STI
