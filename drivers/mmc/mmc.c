@@ -2950,7 +2950,11 @@ static int mmc_power_cycle(struct mmc *mmc)
 	 * SD spec recommends at least 1ms of 'power on' delay.
 	 * Let's wait for 2ms to be on the safer side.
 	 */
+#ifdef CONFIG_ARCH_SYNAPTICS
+	mdelay(20);
+#else
 	udelay(2000);
+#endif
 	ret = mmc_power_on(mmc);
 
 	/*
