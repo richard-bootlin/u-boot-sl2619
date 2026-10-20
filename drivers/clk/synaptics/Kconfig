@@ -1,0 +1,10 @@
+config CLK_SL261X
+	bool "Synaptics SL261X clock driver"
+	depends on CLK && ARCH_SYNAPTICS
+	depends on SYSCON
+	select CLK_CCF
+	select CLK_AUTO_ID
+	help
+	  This enables support for clock driver for SL261X Synaptics platforms.
+
+
