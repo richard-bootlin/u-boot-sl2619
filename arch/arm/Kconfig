@@ -1263,6 +1263,7 @@ config ARCH_SUNXI
 
 config ARCH_SYNAPTICS
 	bool "Support Synaptics SoCs"
+	select ARM64
 	select DM
 	select GICV2
 	select SYNAPTICS_SL2619
