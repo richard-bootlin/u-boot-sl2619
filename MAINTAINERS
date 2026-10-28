@@ -719,7 +719,7 @@ M:	Richard Genoud <richard.genoud@bootlin.com>
 M:	Terry Zhou <terryzhou05@gmail.com>
 S:	Maintained
 N:	synaptics
-F:	arch/arm/dts/sl2619-rdk-u-boot.dtsi
+N:	sl261[x0-9]
 
 ARM TEGRA
 M:	Thierry Reding <treding@nvidia.com>
