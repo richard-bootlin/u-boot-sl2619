@@ -108,6 +108,37 @@
 			ranges;
 			dma-ranges = <0xa0000000 0x00000000 0x10000000>;
 
+			sm_wdt0: watchdog@e5006000 {
+				compatible = "arm,sbsa-gwdt";
+				reg = <0xe5006000 0x1000>,
+				      <0xe5007000 0x1000>;
+				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+				timeout-sec = <30>;
+			};
+
+			sm_wdt1: watchdog@e5008000 {
+				compatible = "arm,sbsa-gwdt";
+				reg = <0xe5008000 0x1000>,
+				      <0xe5009000 0x1000>;
+				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+				timeout-sec = <30>;
+			};
+
+			sm_wdt2: watchdog@e500a000 {
+				compatible = "arm,sbsa-gwdt";
+				reg = <0xe500a000 0x1000>,
+				      <0xe500b000 0x1000>;
+				interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+				timeout-sec = <30>;
+			};
+
+			aon_wdt: watchdog@e500f000 {
+				compatible = "arm,sp805", "arm,primecell";
+				reg = <0xe500f000 0x1000>;
+				timeout-sec = <30>;
+				status = "disabled";
+			};
+
 			sm_chip: chip-control@e5025000 {
 				compatible = "syna,sl261x-mcu-gbl", "syscon", "simple-mfd";
 				reg = <0xe5025000 0x1000>;
@@ -485,6 +516,32 @@
 				#interrupt-cells = <2>;
 				interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
 			};
+		};
+
+		soc_wdt0: watchdog@f7f30000 {
+			compatible = "arm,sbsa-gwdt";
+			reg = <0xf7f30000 0x1000>,
+			      <0xf7f31000 0x1000>;
+			interrupts = <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>;
+			timeout-sec = <30>;
+		};
+
+		soc_wdt1: watchdog@f7f32000 {
+			compatible = "arm,sbsa-gwdt";
+			reg = <0xf7f32000 0x1000>,
+			      <0xf7f33000 0x1000>;
+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+			timeout-sec = <30>;
+			status = "disabled";
+		};
+
+		soc_wdt2: watchdog@f7f34000 {
+			compatible = "arm,sbsa-gwdt";
+			reg = <0xf7f34000 0x1000>,
+			      <0xf7f35000 0x1000>;
+			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+			timeout-sec = <30>;
+			status = "disabled";
 		};
 	};
 };
