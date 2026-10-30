@@ -638,6 +638,9 @@ struct sd_ssr {
 
 enum bus_mode {
 	MMC_LEGACY,
+#ifdef CONFIG_ARCH_SYNAPTICS
+	SD_LEGACY,
+#endif
 	MMC_HS,
 	SD_HS,
 	MMC_HS_52,

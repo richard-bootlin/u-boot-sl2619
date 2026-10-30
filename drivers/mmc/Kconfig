@@ -622,6 +622,20 @@ config MMC_SDHCI_CV1800B
 
 	  If unsure, say N.
 
+# TODO depends on COMMON_CLK DM_MMC && BLK ?*/
+config MMC_SDHCI_DWCMSHC
+	bool "SDHCI support for the Synopsys Designware Cores MSHC"
+	depends on MMC_SDHCI
+	depends on OF_CONTROL
+	help
+	  This selects Synopsys DesignWare Cores Mobile Storage Host
+	  Controller support that can be found on Synaptics sl2610
+	  family SoCs.
+
+	  If you have a controller with this interface, say Y here.
+
+	  If unsure, say N.
+
 config MMC_SDHCI_AM654
 	bool "SDHCI Controller on TI's Am654 devices"
 	depends on ARCH_K3

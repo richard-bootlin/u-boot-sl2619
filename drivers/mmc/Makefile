@@ -61,6 +61,7 @@ obj-$(CONFIG_MMC_SDHCI_BCMSTB)		+= bcmstb_sdhci.o
 obj-$(CONFIG_MMC_SDHCI_CADENCE)		+= sdhci-cadence.o
 obj-$(CONFIG_MMC_SDHCI_CADENCE)		+= sdhci-cadence6.o
 obj-$(CONFIG_MMC_SDHCI_CV1800B)		+= cv1800b_sdhci.o
+obj-$(CONFIG_MMC_SDHCI_DWCMSHC)		+= dwcmshc_sdhci.o
 obj-$(CONFIG_MMC_SDHCI_AM654)		+= am654_sdhci.o
 obj-$(CONFIG_MMC_SDHCI_IPROC)		+= iproc_sdhci.o
 obj-$(CONFIG_MMC_SDHCI_MSM)		+= msm_sdhci.o
