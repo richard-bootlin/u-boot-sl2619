@@ -133,3 +133,15 @@
 &sm_uart1 {
 	status = "okay";
 };
+
+&sdhci0 {
+	status = "okay";
+};
+
+&sdhci1 {
+	status = "okay";
+};
+
+&sdhci2 {
+	status = "okay";
+};
