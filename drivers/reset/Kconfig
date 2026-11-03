@@ -248,6 +248,13 @@ config RESET_SCMI
 	  devices exposed by a SCMI agent based on SCMI reset domain
 	  protocol communication with a SCMI server.
 
+config RESET_SL2610
+	bool "Synaptics SL2610 Reset Driver"
+	depends on DM_RESET && ARCH_SYNAPTICS
+	help
+	  This enables the reset controller driver that can be found in
+	  Synaptics SL2610 product family.
+
 config RESET_ZYNQMP
 	bool "Reset Driver for Xilinx ZynqMP & Versal SoC's"
 	depends on DM_RESET && ZYNQMP_FIRMWARE
