@@ -1,5 +1,77 @@
 // SPDX-License-Identifier: GPL-2.0+
 
+// should be merged in kernel
+/ {
+	regulators {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		sdio2_vmmc: sdio2-vmmc {
+			compatible = "regulator-fixed";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-name = "vmmc_sdio";
+			enable-active-high;
+			gpio = <&expander1 7 GPIO_ACTIVE_HIGH>;
+		};
+
+		sdio2_vqmmc: sdio2-vqmmc {
+			compatible = "regulator-gpio";
+			pinctrl-names = "default";
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-name = "vqmmc_sdio";
+			regulator-type = "voltage";
+			states = <1800000 0x1 3300000 0x0>;
+			gpios = <&expander0 0 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	soc {
+		mux0: mux-controller@f7e10040 {
+			compatible = "reg-mux";
+			reg = <0xf7e10040 0x4>;
+			#mux-control-cells = <1>;
+			mux-reg-masks = <0x0 0x30>;
+			status = "disabled";
+		};
+	};
+};
+
+&pinctrl {
+	soc_sdio2_pmux: soc_sdio2-pmux {
+		groups = "GPIO12", "GPIO16", "GPIO17", "GPIO18", "GPIO19",
+			 "GPIO20", "GPIO21", "GPIO22";
+		function = "sdio2";
+	};
+};
+
 &sm_uart0 {
 	clock-frequency = <25000000>;
+};
+
+&sdhci0 {
+	status = "okay";
+	pad_sn = <10>;
+	pad_sp = <10>;
+	mmc-ddr-1_8v;
+	mmc-hs200-1_8v;
+	mmc-hs400-1_8v;
+	fixed-voltage;
+};
+
+&sdhci2 {
+	status = "okay";
+	pinctrl-0 = <&soc_sdio2_pmux>;
+	pinctrl-names = "default";
+	sdhci-sdio;
+	sd-uhs-sdr50;
+	fixed-voltage;
+	skip-phy;
+	vmmc-supply = <&sdio2_vmmc>;
+	vqmmc-supply = <&sdio2_vqmmc>;
+	mux-controls = <&mux0 0>;
+	mux-control-names = "mux-0";
+	mux-0-value = <3>; // sdio2 loopback enable (EN + CLK)
 };
