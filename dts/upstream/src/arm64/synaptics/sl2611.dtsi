@@ -344,7 +344,7 @@
 			};
 
 			rst: reset {
-				compatible = "syna,sl2610-soc-reset";
+				compatible = "syna,sl2610-reset";
 				#reset-cells = <1>;
 			};
 		};
