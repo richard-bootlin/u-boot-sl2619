@@ -61,6 +61,10 @@
 	fixed-voltage;
 };
 
+&mux0 {
+	status = "okay";
+};
+
 &sdhci2 {
 	status = "okay";
 	pinctrl-0 = <&soc_sdio2_pmux>;
