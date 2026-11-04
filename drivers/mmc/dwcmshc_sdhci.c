@@ -29,6 +29,9 @@
 #define EMMC_RST_N BIT(2)
 #define EMMC_RST_N_OE BIT(3)
 
+/* DWCMSHC uses a non-standard Host Control 2 value for HS400 */
+#define DWCMSHC_CTRL_HS400	0x7
+
 #define PHY_AT_CTRL_R_REG_OFFSET 0x40
 #define AT_EN BIT(0)
 #define CI_EN BIT(1)
@@ -291,7 +294,6 @@ static void dwcmshc_reset_device(struct sdhci_host *host)
 
 static void dwcmshc_reset_host(struct dwcmshc_sdhci_plat *plat)
 {
-	printk("reset\n");
 	reset_reset_bulk(&plat->reset_ctl, 10);
 }
 
@@ -529,7 +531,20 @@ static int dwcmshc_setup_phy(struct sdhci_host *host)
 
 static void dwcmshc_sdhci_set_control_reg(struct sdhci_host *host)
 {
+	u16 ctrl;
+
 	sdhci_set_control_reg(host);
+
+	/*
+	 * The generic core programs SDHCI_CTRL_HS400 (0x5), but DWCMSHC
+	 * expects its own non-standard HS400 value.
+	 */
+	ctrl = sdhci_readw(host, SDHCI_HOST_CONTROL2);
+	if ((ctrl & SDHCI_CTRL_UHS_MASK) == SDHCI_CTRL_HS400) {
+		ctrl &= ~SDHCI_CTRL_UHS_MASK;
+		ctrl |= DWCMSHC_CTRL_HS400;
+		sdhci_writew(host, ctrl, SDHCI_HOST_CONTROL2);
+	}
 }
 
 static int dwcmshc_sdhci_set_ios_post(struct sdhci_host *host)
