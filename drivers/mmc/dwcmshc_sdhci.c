@@ -43,21 +43,36 @@
 #define POST_CHANGE_DLY_SFT 19
 #define POST_CHANGE_DLY_MSK (0x3 << POST_CHANGE_DLY_SFT)
 
-/* PHY */
-#define PHY_REG_BASE 0x300
-#define PHY_REG(off) (PHY_REG_BASE + (off))
+/* PHY register area pointer */
+#define DWC_MSHC_PTR_PHY_R		0x300
 
-#define PHY_CNFG_REG PHY_REG(0)
-#define PHY_RSTN BIT(0)
-#define PHY_PWRGOOD BIT(1)
+#define PHY_REG(off) (DWC_MSHC_PTR_PHY_R + (off))
 
-/* PHY PAD */
-#define PHY_CMDPAD_CNFG_REG PHY_REG(0x4)
-#define PHY_DATPAD_CNFG_REG PHY_REG(0x6)
-#define PHY_CLKPAD_CNFG_REG PHY_REG(0x8)
-#define PHY_STBPAD_CNFG_REG PHY_REG(0xa)
-#define PHY_RSTNPAD_CNFG_REG PHY_REG(0xc)
+/* PHY general configuration */
+#define PHY_CNFG_R			(DWC_MSHC_PTR_PHY_R + 0x00)
+#define PHY_CNFG_RSTN_DEASSERT		0x1  /* Deassert PHY reset */
+#define PHY_PWRGOOD BIT(1)   // TODO new one
+#define PHY_CNFG_PAD_SP_MASK		GENMASK(19, 16) /* bits [19:16] */
+#define PHY_CNFG_PAD_SP			0x0c /* PMOS TX drive strength */
+#define PHY_CNFG_PAD_SN_MASK		GENMASK(23, 20) /* bits [23:20] */
+#define PHY_CNFG_PAD_SN			0x0c /* NMOS TX drive strength */
 
+/* PHY command/response pad settings */
+#define PHY_CMDPAD_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x04)
+
+/* PHY data pad settings */
+#define PHY_DATAPAD_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x06)
+
+/* PHY clock pad settings */
+#define PHY_CLKPAD_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x08)
+
+/* PHY strobe pad settings */
+#define PHY_STBPAD_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x0a)
+
+/* PHY reset pad settings */
+#define PHY_RSTNPAD_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x0c)
+
+/* TODO: remove */
 /*PHY PAD GENERAL modes */
 #define PAD_SP_8    0x8
 #define PAD_SP_9    0x9
@@ -179,60 +194,60 @@ struct dwcmshc_sdhci_plat {
 };
 
 struct phy_gen_setting gen_setting_1v8 = {
-	PHY_CNFG_REG, PHY_GEN_MASK, PHY_GEN_SETTING(PAD_SP_8, PAD_SN_8)};
+	PHY_CNFG_R, PHY_GEN_MASK, PHY_GEN_SETTING(PAD_SP_8, PAD_SN_8)};
 struct phy_pad_setting pad_setting_1v8[PHY_PAD_SETTING_NUM] = {
 	{
-		PHY_CMDPAD_CNFG_REG,
+		PHY_CMDPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT1P8, WPE_PULLUP, TX_SLEW_P_0, TX_SLEW_N_3)
 	},
 	{
-		PHY_DATPAD_CNFG_REG,
+		PHY_DATAPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT1P8, WPE_PULLUP, TX_SLEW_P_0, TX_SLEW_N_3)
 	},
 	{
-		PHY_CLKPAD_CNFG_REG,
+		PHY_CLKPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(RXSELOFF, WPE_DISABLE, TX_SLEW_P_0, TX_SLEW_N_3)
 	},
 	{
-		PHY_STBPAD_CNFG_REG,
+		PHY_STBPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT1P8, WPE_PULLDOWN, TX_SLEW_P_0, TX_SLEW_N_3)
 	},
 	{
-		PHY_RSTNPAD_CNFG_REG,
+		PHY_RSTNPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT1P8, WPE_PULLUP, TX_SLEW_P_0, TX_SLEW_N_3)
 	}
 };
 
 struct phy_gen_setting gen_setting_3v3 = {
-	PHY_CNFG_REG, PHY_GEN_MASK, PHY_GEN_SETTING(PAD_SP_9, PAD_SN_8)};
+	PHY_CNFG_R, PHY_GEN_MASK, PHY_GEN_SETTING(PAD_SP_9, PAD_SN_8)};
 struct phy_pad_setting pad_setting_3v3[PHY_PAD_SETTING_NUM] = {
 	{
-		PHY_CMDPAD_CNFG_REG,
+		PHY_CMDPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT3P3, WPE_PULLUP, TX_SLEW_P_3, TX_SLEW_N_2)
 	},
 	{
-		PHY_DATPAD_CNFG_REG,
+		PHY_DATAPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT3P3, WPE_PULLUP, TX_SLEW_P_3, TX_SLEW_N_2)
 	},
 	{
-		PHY_CLKPAD_CNFG_REG,
+		PHY_CLKPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(RXSELOFF, WPE_DISABLE, TX_SLEW_P_3, TX_SLEW_N_2)
 	},
 	{
-		PHY_STBPAD_CNFG_REG,
+		PHY_STBPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT3P3, WPE_PULLDOWN, TX_SLEW_P_3, TX_SLEW_N_2)
 	},
 	{
-		PHY_RSTNPAD_CNFG_REG,
+		PHY_RSTNPAD_CNFG_R,
 		PHY_PAD_MASK,
 		PHY_PAD_SETTING(SCHMITT3P3, WPE_PULLUP, TX_SLEW_P_3, TX_SLEW_N_2)
 	}
@@ -264,10 +279,10 @@ static int dwcmshc_reset_phy(struct sdhci_host *host, int rst)
 	if (plat->skip_phy)
 		return 0;
 
-	valw = sdhci_readw(host, PHY_CNFG_REG);
-	valw &= ~PHY_RSTN;
+	valw = sdhci_readw(host, PHY_CNFG_R);
+	valw &= ~PHY_CNFG_RSTN_DEASSERT;
 	valw |= rst;
-	sdhci_writew(host, valw, PHY_CNFG_REG);
+	sdhci_writew(host, valw, PHY_CNFG_R);
 
 	return 0;
 }
@@ -422,7 +437,7 @@ static int dwcmshc_setup_phy_configure(struct sdhci_host *host)
 
 	do {
 		mdelay(1);
-		val = sdhci_readl(host, PHY_CNFG_REG);
+		val = sdhci_readl(host, PHY_CNFG_R);
 
 		if (!timeout) {
 			printf("EMMC PHY's PowerGood status is not ready !\n");
@@ -697,7 +712,6 @@ static int dwcmshc_probe(struct udevice *dev)
 	struct sdhci_host *host = dev_get_priv(dev);
 	int ret = 0;
 	struct clk clk;
-	unsigned long clock;
 	struct mux_control *mux;
 	unsigned int state;
 
@@ -711,6 +725,7 @@ static int dwcmshc_probe(struct udevice *dev)
 		mux_control_select(mux, state);
 	}
 
+	// get by name (core)
 	ret = clk_get_by_index(dev, 0, &clk);
 	if (ret < 0) {
 		dev_err(dev, "failed to get clock\n");
