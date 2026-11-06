@@ -79,3 +79,7 @@
 	mux-control-names = "mux-0";
 	mux-0-value = <3>; // sdio2 loopback enable (EN + CLK)
 };
+
+&sm_wdt0 {
+	status = "okay";
+};
