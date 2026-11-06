@@ -442,7 +442,6 @@ static int dwcmshc_setup_hs400_phy_dll(struct sdhci_host *host)
 	u32 mstlkdc, slvlkdc;
 	u16 valw;
 	u8 valb;
-	char *ep = NULL;
 
 	if (plat->skip_phy)
 		return 0;
@@ -502,10 +501,6 @@ static int dwcmshc_setup_hs400_phy_dll(struct sdhci_host *host)
 	else
 		delay_step = 5000 / (4 * slvlkdc);
 
-	ep = env_get("sdhci_dll_delay_offset");
-	if (ep)
-		plat->dll_delay_offset = (u32)simple_strtol(ep, NULL, 10);
-
 	delay_code = plat->dll_delay_offset / delay_step;
 	delay_code += 1;
 
@@ -551,7 +546,6 @@ static int dwcmshc_sdhci_set_ios_post(struct sdhci_host *host)
 {
 	struct dwcmshc_sdhci_plat *plat = dev_get_plat(host->mmc->dev);
 	int delay = 0;
-	char *ep = NULL;
 
 	if (plat->phy_voltage != host->mmc->signal_voltage && !plat->fixed_voltage) {
 		dwcmshc_reset_phy(host, 0);
@@ -568,10 +562,6 @@ static int dwcmshc_sdhci_set_ios_post(struct sdhci_host *host)
 
 		printf("%s MMC_HS_400 PHY_DLL_CAL failed\n", __func__);
 
-		ep = env_get("sdhci_sdclkdl_dc");
-		if (ep)
-			plat->sdclkdl_dc = (u32)simple_strtol(ep, NULL, 10);
-
 		if (plat->sdclkdl_dc) {
 			dwcmshc_setup_phy_delayline(host, plat->sdclkdl_dc);
 			return 0;
@@ -579,10 +569,6 @@ static int dwcmshc_sdhci_set_ios_post(struct sdhci_host *host)
 	}
 
 	if (host->mmc->selected_mode == UHS_SDR104) {
-		ep = env_get("sdhci_sdclkdl_dc");
-		if (ep)
-			plat->sdclkdl_dc = (u32)simple_strtol(ep, NULL, 10);
-
 		if (plat->sdclkdl_dc) {
 			dwcmshc_setup_phy_delayline(host, plat->sdclkdl_dc);
 			return 0;
