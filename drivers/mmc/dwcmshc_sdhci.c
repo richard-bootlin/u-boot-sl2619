@@ -701,8 +701,10 @@ static int dwcmshc_probe(struct udevice *dev)
 	struct mux_control *mux;
 	unsigned int state;
 
+	// To add to snps_sdhci
 	dwcmshc_reset_host(plat);
 
+	// only for sd card, to remove
 	mux = devm_mux_control_get(dev, "mux-0");
 	if (!IS_ERR(mux)) {
 		state = dev_read_u32_default(dev, "mux-0-value", 0);
@@ -715,42 +717,51 @@ static int dwcmshc_probe(struct udevice *dev)
 		return ret;
 	}
 
-	clock = clk_get_rate(&clk);
-	if (IS_ERR_VALUE(clock)) {
-		dev_err(dev, "failed to get rate\n");
-		return clock;
-	}
+	ret = clk_prepare_enable(&clk);
+	if (ret)
+		return ret;
 
-	host->max_clk = clock;
+	host->max_clk = clk_get_rate(&clk);
+
+	host->ops = &dwcmshc_ops;
+
 	host->mmc = &plat->mmc;
+	host->mmc->priv = host;
 	host->mmc->dev = dev;
+	upriv->mmc = host->mmc;
+
 	host->mmc->signal_voltage = MMC_SIGNAL_VOLTAGE_180;
 
+	/* new binding, to remove? (not used) */
 	if (dev_read_bool(dev, "3_3v-signalling"))
 		host->mmc->signal_voltage = MMC_SIGNAL_VOLTAGE_330;
 
+	/* new binding, to remove? */
 	if (dev_read_bool(dev, "fixed-voltage"))
 		plat->fixed_voltage = 1;
 
+	/* new binding, to remove? (sd card)*/
 	if (dev_read_bool(dev, "skip-phy"))
 		plat->skip_phy = 1;
 
+	/* new binding, to remove? */
 	if (dev_read_bool(dev, "sdhci-sdio"))
 		plat->mmc_type = SD_VERSION_SD;
 	else
 		plat->mmc_type = MMC_VERSION_MMC;
 
+	/* new binding, to remove? */
 	plat->sdclkdl_dc = dev_read_u32_default(dev, "sdclkdl-dc", 0);
+	/* to hardcode */
 	plat->pad_sn = dev_read_u32_default(dev, "pad_sn", 0);
+	/* to hardcode */
 	plat->pad_sp = dev_read_u32_default(dev, "pad_sp", 0);
+	/* to hardcode */
 	plat->dll_delay_offset = dev_read_u32_default(dev, "dll-delay-offset", 1000);
 
 	ret = sdhci_setup_cfg(&plat->cfg, host, host->max_clk, 400000);
 	if (ret)
 		return ret;
-
-	upriv->mmc = host->mmc;
-	host->mmc->priv = host;
 
 	ret = sdhci_probe(dev);
 	if (ret)
@@ -771,9 +782,10 @@ static int dwcmshc_of_to_plat(struct udevice *dev)
 	struct mmc_config *cfg = &plat->cfg;
 	int ret;
 
+	/* to add to snps */
 	if (reset_get_bulk(dev, &plat->reset_ctl)) {
 		printf("%s: can't get reset index for sdhci-dwcmshc\n", __func__);
-	//	return -ENODEV;
+		return -ENODEV;
 	}
 	host->name = dev->name;
 	host->ioaddr = (void *)dev_read_addr(dev);
@@ -781,8 +793,6 @@ static int dwcmshc_of_to_plat(struct udevice *dev)
 	ret = mmc_of_parse(dev, cfg);
 	if (ret)
 		return ret;
-
-	host->ops = &dwcmshc_ops;
 
 	return 0;
 }
