@@ -430,6 +430,7 @@ static int snps_sdhci_bind(struct udevice *dev)
 
 static const struct udevice_id snps_sdhci_ids[] = {
 	{ .compatible = "thead,th1520-dwcmshc" },
+	{ .compatible = "snps,dwcmshc-sdhci" },
 	{ /* sentinel */ }
 };
 
