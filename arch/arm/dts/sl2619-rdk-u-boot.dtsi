@@ -94,6 +94,7 @@
 	mux-control-names = "mux-0";
 	mux-0-value = <3>; // sdio2 loopback enable (EN + CLK)
 	snps,no-phy;
+	snps,chip-ctrl = <&chip>;
 };
 
 &sm_wdt0 {
