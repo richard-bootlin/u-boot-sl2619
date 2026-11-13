@@ -5,9 +5,12 @@
 
 #include <clk.h>
 #include <dm.h>
+#include <dm/device_compat.h>
 #include <linux/bitfield.h>
 #include <linux/sizes.h>
+#include <regmap.h>
 #include <sdhci.h>
+#include <syscon.h>
 
 /* DWCMSHC specific Mode Select value */
 #define DWCMSHC_CTRL_HS400		0x7
@@ -116,6 +119,13 @@
 
 #define BOUNDARY_OK(addr, len) \
 	(((addr) | (SZ_128M - 1)) == (((addr) + (len) - 1) | (SZ_128M - 1)))
+
+/* Bits for enabling the loopback clock */
+#define DWCMSHC_CHIP_CNTL		0x40
+#define DWCMSHC_SDIO2_LPBK_CLK_EN	BIT(4)
+#define DWCMSHC_SDIO2_LPBK_CLK_SEL	BIT(5)
+#define DWCMSHC_SDIO2_LPBK_CLK_MSK	(DWCMSHC_SDIO2_LPBK_CLK_EN | \
+					 DWCMSHC_SDIO2_LPBK_CLK_SEL)
 
 struct snps_sdhci_plat {
 	struct mmc_config cfg;
@@ -367,6 +377,7 @@ static int snps_sdhci_probe(struct udevice *dev)
 	struct mmc_uclass_priv *upriv = dev_get_uclass_priv(dev);
 	struct snps_sdhci_plat *plat = dev_get_plat(dev);
 	struct mmc_config *cfg = &plat->cfg;
+	struct regmap *chip_ctrl;
 	struct sdhci_host *host = dev_get_priv(dev);
 	struct clk clk;
 	int ret;
@@ -389,6 +400,22 @@ static int snps_sdhci_probe(struct udevice *dev)
 	host->mmc->priv = host;
 	host->mmc->dev = dev;
 	upriv->mmc = host->mmc;
+
+	/* if there's no PHY, the loopback clock needs to be enabled */
+	if (dev_read_bool(dev, "snps,no-phy")) {
+		chip_ctrl = syscon_regmap_lookup_by_phandle(dev, "snps,chip-ctrl");
+		if (IS_ERR(chip_ctrl)) {
+			dev_err(dev, "failed to get CHIP_CTRL regmap\n");
+			return PTR_ERR(chip_ctrl);
+		}
+
+		ret = regmap_update_bits(chip_ctrl, DWCMSHC_CHIP_CNTL,
+					 DWCMSHC_SDIO2_LPBK_CLK_MSK,
+					 DWCMSHC_SDIO2_LPBK_CLK_EN |
+					 DWCMSHC_SDIO2_LPBK_CLK_SEL);
+		if (ret)
+			return ret;
+	}
 
 	ret = sdhci_setup_cfg(cfg, host, cfg->f_max, EMMC_MIN_FREQ);
 	if (ret)
