@@ -245,6 +245,11 @@ def find_ram_base(ubman):
     if ram_base is not None:
         return ram_base
 
+    override = ubman.config.env.get('env__ram_base', None)
+    if override is not None:
+        ram_base = int(override)
+        return ram_base
+
     with ubman.log.section('find_ram_base'):
         response = ubman.run_command('bdinfo')
         for l in response.split('\n'):

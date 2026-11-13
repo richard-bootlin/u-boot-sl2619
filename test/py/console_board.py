@@ -34,7 +34,9 @@ class ConsoleExecAttach(ConsoleBase):
         # 1 would be safe anywhere, but is very slow (a pexpect issue?).
         # 16 is a common FIFO size.
         # HW flow control would mean this could be infinite.
-        super(ConsoleExecAttach, self).__init__(log, config, max_fifo_fill=16)
+        max_fifo_fill = config.env.get('env__max_fifo_fill', 16)
+        super(ConsoleExecAttach, self).__init__(log, config,
+                                                max_fifo_fill=max_fifo_fill)
 
         with self.log.section('flash'):
             self.log.action('Flashing U-Boot')
