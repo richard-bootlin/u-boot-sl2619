@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+config SOC_SL2610_SYSCON
+	bool "Synaptics SL2610 system controller"
+	depends on ARCH_SYNAPTICS && OF_CONTROL && SYSCON
+	help
+	  Support the global and control register blocks on Synaptics SL2610
+	  SoCs. This binds the clock, reset and pin controllers provided by
+	  each register block.
+
+	  Say Y here to enable access to these functions on SL2610 systems.

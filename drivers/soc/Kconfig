@@ -50,6 +50,7 @@ config SOC_XILINX_VERSAL_NET
 
 source "drivers/soc/qcom/Kconfig"
 source "drivers/soc/samsung/Kconfig"
+source "drivers/soc/synaptics/Kconfig"
 source "drivers/soc/ti/Kconfig"
 
 endmenu
