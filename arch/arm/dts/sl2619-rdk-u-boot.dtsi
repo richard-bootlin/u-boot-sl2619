@@ -1,5 +1,19 @@
 // SPDX-License-Identifier: GPL-2.0+
 
+// should be merged in kernel
+/ {
+	reserved_memory: reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		tz: tz@100000 {
+			reg = <0x0 0x00100000 0x0 0x00500000>;
+			no-map;
+		};
+	};
+};
+
 &sm_uart0 {
 	bootph-all;
 };
