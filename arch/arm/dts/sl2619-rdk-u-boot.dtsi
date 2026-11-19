@@ -90,9 +90,6 @@
 	skip-phy;
 	vmmc-supply = <&sdio2_vmmc>;
 	vqmmc-supply = <&sdio2_vqmmc>;
-	mux-controls = <&mux0 0>;
-	mux-control-names = "mux-0";
-	mux-0-value = <3>; // sdio2 loopback enable (EN + CLK)
 	snps,no-phy;
 	snps,chip-ctrl = <&chip>;
 };
