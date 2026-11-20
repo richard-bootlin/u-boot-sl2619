@@ -712,6 +712,7 @@ M:	Richard Genoud <richard.genoud@bootlin.com>
 M:	Terry Zhou <terryzhou05@gmail.com>
 S:	Maintained
 N:	synaptics
+N:	sl261[x0-9]
 
 ARM TEGRA
 M:	Thierry Reding <treding@nvidia.com>
